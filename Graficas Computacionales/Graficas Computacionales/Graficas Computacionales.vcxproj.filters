@@ -13,5 +13,33 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Archivos de recursos\Shaders">
+      <UniqueIdentifier>{906c6523-0de8-44ed-9d3f-18903f12ed93}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.cpp">
+      <Filter>Archivos de recursos</Filter>
+    </ClCompile>
+    <ClCompile Include="InputFile.cpp">
+      <Filter>Archivos de recursos</Filter>
+    </ClCompile>
+    <ClCompile Include="DiscardCenter.vert">
+      <Filter>Archivos de recursos\Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="DiscardCenter.frag">
+      <Filter>Archivos de recursos\Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="Default.frag">
+      <Filter>Archivos de recursos\Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="Default.vert">
+      <Filter>Archivos de recursos\Shaders</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="InputFile.h">
+      <Filter>Archivos de recursos</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

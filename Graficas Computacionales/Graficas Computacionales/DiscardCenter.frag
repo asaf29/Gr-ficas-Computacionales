@@ -1,18 +1,24 @@
-#version 330
+#version 400
 
 in vec3 InterpolatedColor;
+
 out vec4 FragColor;
+
+// Esto es la resolución de la ventana en pixeles
+uniform vec2 Resolution;
 
 void main()
 {
-    vec2 pixelPositionInWindow= gl_FragCoord.xy;
-    vec2 centro = vec2 (200.0f,200.0f);
-    vec2 distancia = pixelPositionInWindow-centro;
+	// Es la posición del pixel en la ventana en 
+	// un rango de [(0,0), (1,1)]
+	vec2 p = gl_FragCoord.xy / Resolution;
+	// Calculando un vector que va del pixel al centro
+	// de la ventana
+	vec2 q = p - vec2(0.5f, 0.5f);
+	// Si el vector q tiene una medida menor a 0.25,
+	// descartamos el pixel
+	if(length(q) < 0.25f)
+		discard;
 
-    FragColor = vec4(InterpolatedColor, 1.0f);
-
-    if (sqrt((distancia.x)*(distancia.x) + (distancia.y)*(distancia.y))<100.0f){
-    
-   	 discard;
-    }
+	FragColor = vec4(InterpolatedColor, 1.0f);
 }

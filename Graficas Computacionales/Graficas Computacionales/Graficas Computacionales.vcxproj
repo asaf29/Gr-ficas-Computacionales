@@ -70,8 +70,12 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LibraryPath>D:\Escritorio\Libraries %281%29\Libraries\lib;$(LibraryPath)</LibraryPath>
-    <IncludePath>D:\Escritorio\Libraries %281%29\Libraries\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\Asus_User\Downloads\Libraries\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\Asus_User\Downloads\Libraries\include;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>C:\Users\Asus_User\Downloads\Libraries\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\Asus_User\Downloads\Libraries\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -89,6 +93,9 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
     </ClCompile>
+    <Link>
+      <AdditionalDependencies>assimp-vc140-mt.dll;DevIL.dll;freeglut.dll;glew32.dll;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>

@@ -1,35 +1,139 @@
-#include <GL/glew.h>
-#include <GL/freeglut.h>
-#include <iostream>
-#include <glm/glm.hpp>
-#include <vector>
-#include "InputFile.h"
+/*********
+Kevin Asaf Alvarez Villarruel A01376017	
+Isaac Hinojosa Padilla A01375843
 
+******/
 
 #include <GL/glew.h>
 #include <GL/freeglut.h>
 #include <iostream>
 #include <glm/glm.hpp>
 #include <vector>
+#include "Camera.h"
+#include "Mesh.h"
+#include "ShaderProgram.h"
+#include "Transform.h"
+
+Mesh _mesh;
+ShaderProgram _shaderProgram;
+Transform _transform;
+Camera _camera;
 
 void Initialize()
 {
-	// Creando toda la memoria que el programa va a utilizar.
+	std::vector<glm::vec3> positions;
 
-	// Creación del atributo de posiciones de los vértices.
-	// Lista de vec2
-	// Claramente en el CPU y RAM
-	std::vector<glm::vec2> positions;
-	positions.push_back(glm::vec2(0.5f, -0.5f));
-	positions.push_back(glm::vec2(0.5f, 0.5f));
-	positions.push_back(glm::vec2(-0.5f, -0.5f));
-	positions.push_back(glm::vec2(-0.5f, 0.5f));
+	//Cara Frente 
+	positions.push_back(glm::vec3(-3.0f, -3.0f, 3.0f)); //0
+	positions.push_back(glm::vec3(3.0f, -3.0f, 3.0f)); //1
+	positions.push_back(glm::vec3(3.0f, 3.0f, 3.0f)); //2
+	positions.push_back(glm::vec3(-3.0, 3.0f, 3.0f)); //3
+													  //Cara Derecha
+	positions.push_back(glm::vec3(3.0f, -3.0f, 3.0f)); //4
+	positions.push_back(glm::vec3(3.0f, -3.0f, -3.0f)); //5
+	positions.push_back(glm::vec3(3.0f, 3.0f, -3.0f)); //6
+	positions.push_back(glm::vec3(3.0f, 3.0f, 3.0f)); //7
+													  //Cara Izquierda 
+	positions.push_back(glm::vec3(-3.0f, -3.0f, -3.0f)); //8
+	positions.push_back(glm::vec3(-3.0f, -3.0f, 3.0f)); //9
+	positions.push_back(glm::vec3(-3.0f, 3.0f, 3.0f)); //10
+	positions.push_back(glm::vec3(-3.0f, 3.0f, -3.0f)); //11
+														//Cara Atras 
+	positions.push_back(glm::vec3(3.0f, -3.0f, -3.0f)); //12
+	positions.push_back(glm::vec3(-3.0f, -3.0f, -3.0f)); //13
+	positions.push_back(glm::vec3(-3.0f, 3.0f, -3.0f)); //14
+	positions.push_back(glm::vec3(3.0f, 3.0f, -3.0f)); //15
+													   //Cara Arriba 
+	positions.push_back(glm::vec3(-3.0f, 3.0f, 3.0f)); //16
+	positions.push_back(glm::vec3(3.0f, 3.0f, 3.0f)); //17
+	positions.push_back(glm::vec3(3.0f, 3.0f, -3.0f)); //18
+	positions.push_back(glm::vec3(-3.0f, 3.0f, -3.0f)); //19
+														//Cara Abajo
+	positions.push_back(glm::vec3(-3.0f, -3.0f, -3.0f)); //20
+	positions.push_back(glm::vec3(3.0f, -3.0f, -3.0f)); //21
+	positions.push_back(glm::vec3(3.0f, -3.0f, 3.0f)); //22
+	positions.push_back(glm::vec3(-3.0f, -3.0f, 3.0f)); //23
+
+
+
 	// Arreglo de colores en el cpu
 	std::vector<glm::vec3> colors;
+	//Cara Frente 
+	colors.push_back(glm::vec3(1.0f, 0.0f, 1.0f));
+	colors.push_back(glm::vec3(1.0f, 0.0f, 1.0f));
+	colors.push_back(glm::vec3(1.0f, 0.0f, 1.0f));
+	colors.push_back(glm::vec3(1.0f, 0.0f, 1.0f));
+	//Cara Derecha
 	colors.push_back(glm::vec3(1.0f, 0.0f, 0.0f));
 	colors.push_back(glm::vec3(1.0f, 0.0f, 0.0f));
 	colors.push_back(glm::vec3(1.0f, 0.0f, 0.0f));
 	colors.push_back(glm::vec3(1.0f, 0.0f, 0.0f));
+	//Cara Izquierda 
+	colors.push_back(glm::vec3(0.0f, 1.0f, 0.0f));
+	colors.push_back(glm::vec3(0.0f, 1.0f, 0.0f));
+	colors.push_back(glm::vec3(0.0f, 1.0f, 0.0f));
+	colors.push_back(glm::vec3(0.0f, 1.0f, 0.0f));
+	//Cara Atras
+	colors.push_back(glm::vec3(1.0f, 1.0f, 0.0f));
+	colors.push_back(glm::vec3(1.0f, 1.0f, 0.0f));
+	colors.push_back(glm::vec3(1.0f, 1.0f, 0.0f));
+	colors.push_back(glm::vec3(1.0f, 1.0f, 0.0f));
+	//Cara Arriba
+	colors.push_back(glm::vec3(0.0f, 1.0f, 1.0f));
+	colors.push_back(glm::vec3(0.0f, 1.0f, 1.0f));
+	colors.push_back(glm::vec3(0.0f, 1.0f, 1.0f));
+	colors.push_back(glm::vec3(0.0f, 1.0f, 1.0f));
+	//Cara Abajo
+	colors.push_back(glm::vec3(0.0f, 0.0f, 1.0f));
+	colors.push_back(glm::vec3(0.0f, 0.0f, 1.0f));
+	colors.push_back(glm::vec3(0.0f, 0.0f, 1.0f));
+	colors.push_back(glm::vec3(0.0f, 0.0f, 1.0f));
+
+
+
+	//0, 1, 2, 0, 2, 3,   //front 
+	//4, 5, 6, 4, 6, 7,   //right 
+	//8, 9, 10, 8, 10, 11,  //back 
+	//12, 13, 14, 12, 14, 15,  //left 
+	//16, 17, 18, 16, 18, 19,  //upper 
+	//20, 21, 22, 20, 22, 23
+
+	std::vector<unsigned int> indices;
+	//Cara Frente 
+	indices.push_back(0); indices.push_back(1); indices.push_back(2);
+	indices.push_back(0); indices.push_back(2); indices.push_back(3);
+	//Cara Derecha
+	indices.push_back(4); indices.push_back(5); indices.push_back(6);
+	indices.push_back(4); indices.push_back(6); indices.push_back(7);
+	//Cara Izquierda
+	indices.push_back(8); indices.push_back(9); indices.push_back(10);
+	indices.push_back(8); indices.push_back(10); indices.push_back(11);
+	//Cara Atras
+	indices.push_back(12); indices.push_back(13); indices.push_back(14);
+	indices.push_back(12); indices.push_back(14); indices.push_back(15);
+	//Cara Arriba
+	indices.push_back(16); indices.push_back(17); indices.push_back(18);
+	indices.push_back(16); indices.push_back(18); indices.push_back(19);
+	//Cara Abajo
+	indices.push_back(20); indices.push_back(21); indices.push_back(22);
+	indices.push_back(20); indices.push_back(22); indices.push_back(23);
+
+
+
+	_mesh.CreateMesh(24);
+	_mesh.SetIndices(indices, GL_STATIC_DRAW);
+
+	_mesh.SetPositionAttribute(positions, GL_STATIC_DRAW, 0);
+	_mesh.SetColorAttribute(colors, GL_STATIC_DRAW, 1);
+	
+	_shaderProgram.CreateProgram();
+	_shaderProgram.AttachShader("Default.vert", GL_VERTEX_SHADER);
+	_shaderProgram.AttachShader("Default.frag", GL_FRAGMENT_SHADER);
+	_shaderProgram.SetAttribute(0, "VertexPosition");
+	_shaderProgram.SetAttribute(1, "VertexColor");
+	_shaderProgram.LinkProgram();
+
+	//_transform.SetRotation(0.0f, 0.0f, 45.0f);
 }
 
 void GameLoop()
@@ -37,6 +141,16 @@ void GameLoop()
 	// Limpiamos el buffer de color y el buffer de profunidad.
 	// Siempre hacerlo al inicio del frame
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	_camera.SetPosition(0.0f, 0.0f, 15.0f);
+
+	//_camera.MoveForward(0.0001f);
+	_transform.Rotate(0.1f, 0.1f, 0.1f, true);
+
+	_shaderProgram.Activate();
+	_shaderProgram.SetUniformMatrix("mvpMatrix", _camera.GetViewProjection() * _transform.GetModelMatrix());
+	_mesh.Draw(GL_TRIANGLES);
+	_shaderProgram.Deactivate();
 
 	// Cuando terminamos de renderear, cambiamos los buffers.
 	glutSwapBuffers();
@@ -77,7 +191,7 @@ int main(int argc, char* argv[])
 	// true color RGBA, un buffer de profundidad y un segundo buffer para renderear.
 	glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH | GLUT_DOUBLE);
 	// Iniciar las dimensiones de la ventana (en pixeles)
-	glutInitWindowSize(400, 400);
+	glutInitWindowSize(500, 500);
 	// Creamos la ventana y le damos un título.
 	glutCreateWindow("Hello World GL");
 	// Asociamos una función de render.

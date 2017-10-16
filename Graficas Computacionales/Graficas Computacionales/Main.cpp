@@ -23,32 +23,32 @@ void Initialize()
 {
 	std::vector<glm::vec3> positions;
 
-	//Cara Frente 
+	//Frente 
 	positions.push_back(glm::vec3(-3.0f, -3.0f, 3.0f)); //0
 	positions.push_back(glm::vec3(3.0f, -3.0f, 3.0f)); //1
 	positions.push_back(glm::vec3(3.0f, 3.0f, 3.0f)); //2
 	positions.push_back(glm::vec3(-3.0, 3.0f, 3.0f)); //3
-													  //Cara Derecha
+	//Derecha
 	positions.push_back(glm::vec3(3.0f, -3.0f, 3.0f)); //4
 	positions.push_back(glm::vec3(3.0f, -3.0f, -3.0f)); //5
 	positions.push_back(glm::vec3(3.0f, 3.0f, -3.0f)); //6
 	positions.push_back(glm::vec3(3.0f, 3.0f, 3.0f)); //7
-													  //Cara Izquierda 
+	//Izquierda 
 	positions.push_back(glm::vec3(-3.0f, -3.0f, -3.0f)); //8
 	positions.push_back(glm::vec3(-3.0f, -3.0f, 3.0f)); //9
 	positions.push_back(glm::vec3(-3.0f, 3.0f, 3.0f)); //10
 	positions.push_back(glm::vec3(-3.0f, 3.0f, -3.0f)); //11
-														//Cara Atras 
+	//Atras 
 	positions.push_back(glm::vec3(3.0f, -3.0f, -3.0f)); //12
 	positions.push_back(glm::vec3(-3.0f, -3.0f, -3.0f)); //13
 	positions.push_back(glm::vec3(-3.0f, 3.0f, -3.0f)); //14
 	positions.push_back(glm::vec3(3.0f, 3.0f, -3.0f)); //15
-													   //Cara Arriba 
+	//Arriba 
 	positions.push_back(glm::vec3(-3.0f, 3.0f, 3.0f)); //16
 	positions.push_back(glm::vec3(3.0f, 3.0f, 3.0f)); //17
 	positions.push_back(glm::vec3(3.0f, 3.0f, -3.0f)); //18
 	positions.push_back(glm::vec3(-3.0f, 3.0f, -3.0f)); //19
-														//Cara Abajo
+	//Abajo
 	positions.push_back(glm::vec3(-3.0f, -3.0f, -3.0f)); //20
 	positions.push_back(glm::vec3(3.0f, -3.0f, -3.0f)); //21
 	positions.push_back(glm::vec3(3.0f, -3.0f, 3.0f)); //22
@@ -58,32 +58,32 @@ void Initialize()
 
 	// Arreglo de colores en el cpu
 	std::vector<glm::vec3> colors;
-	//Cara Frente 
+	//Frente 
 	colors.push_back(glm::vec3(1.0f, 0.0f, 1.0f));
 	colors.push_back(glm::vec3(1.0f, 0.0f, 1.0f));
 	colors.push_back(glm::vec3(1.0f, 0.0f, 1.0f));
 	colors.push_back(glm::vec3(1.0f, 0.0f, 1.0f));
-	//Cara Derecha
+	//Derecha
 	colors.push_back(glm::vec3(1.0f, 0.0f, 0.0f));
 	colors.push_back(glm::vec3(1.0f, 0.0f, 0.0f));
 	colors.push_back(glm::vec3(1.0f, 0.0f, 0.0f));
 	colors.push_back(glm::vec3(1.0f, 0.0f, 0.0f));
-	//Cara Izquierda 
+	//Izquierda 
 	colors.push_back(glm::vec3(0.0f, 1.0f, 0.0f));
 	colors.push_back(glm::vec3(0.0f, 1.0f, 0.0f));
 	colors.push_back(glm::vec3(0.0f, 1.0f, 0.0f));
 	colors.push_back(glm::vec3(0.0f, 1.0f, 0.0f));
-	//Cara Atras
+	//Atras
 	colors.push_back(glm::vec3(1.0f, 1.0f, 0.0f));
 	colors.push_back(glm::vec3(1.0f, 1.0f, 0.0f));
 	colors.push_back(glm::vec3(1.0f, 1.0f, 0.0f));
 	colors.push_back(glm::vec3(1.0f, 1.0f, 0.0f));
-	//Cara Arriba
+	//Arriba
 	colors.push_back(glm::vec3(0.0f, 1.0f, 1.0f));
 	colors.push_back(glm::vec3(0.0f, 1.0f, 1.0f));
 	colors.push_back(glm::vec3(0.0f, 1.0f, 1.0f));
 	colors.push_back(glm::vec3(0.0f, 1.0f, 1.0f));
-	//Cara Abajo
+	//Abajo
 	colors.push_back(glm::vec3(0.0f, 0.0f, 1.0f));
 	colors.push_back(glm::vec3(0.0f, 0.0f, 1.0f));
 	colors.push_back(glm::vec3(0.0f, 0.0f, 1.0f));
@@ -99,24 +99,48 @@ void Initialize()
 	//20, 21, 22, 20, 22, 23
 
 	std::vector<unsigned int> indices;
-	//Cara Frente 
-	indices.push_back(0); indices.push_back(1); indices.push_back(2);
-	indices.push_back(0); indices.push_back(2); indices.push_back(3);
-	//Cara Derecha
-	indices.push_back(4); indices.push_back(5); indices.push_back(6);
-	indices.push_back(4); indices.push_back(6); indices.push_back(7);
-	//Cara Izquierda
-	indices.push_back(8); indices.push_back(9); indices.push_back(10);
-	indices.push_back(8); indices.push_back(10); indices.push_back(11);
-	//Cara Atras
-	indices.push_back(12); indices.push_back(13); indices.push_back(14);
-	indices.push_back(12); indices.push_back(14); indices.push_back(15);
-	//Cara Arriba
-	indices.push_back(16); indices.push_back(17); indices.push_back(18);
-	indices.push_back(16); indices.push_back(18); indices.push_back(19);
-	//Cara Abajo
-	indices.push_back(20); indices.push_back(21); indices.push_back(22);
-	indices.push_back(20); indices.push_back(22); indices.push_back(23);
+	//Frente 
+	indices.push_back(0);
+	indices.push_back(1);
+	indices.push_back(2);
+	indices.push_back(0); 
+	indices.push_back(2); 
+	indices.push_back(3);
+	//CDerecha
+	indices.push_back(4); 
+	indices.push_back(5); 
+	indices.push_back(6);
+	indices.push_back(4); 
+	indices.push_back(6); 
+	indices.push_back(7);
+	//Izquierda
+	indices.push_back(8); 
+	indices.push_back(9); 
+	indices.push_back(10);
+	indices.push_back(8);
+	indices.push_back(10); 
+	indices.push_back(11);
+	// Atras
+	indices.push_back(12);
+	indices.push_back(13); 
+	indices.push_back(14);
+	indices.push_back(12);
+	indices.push_back(14);
+	indices.push_back(15);
+	// Arriba
+	indices.push_back(16);
+	indices.push_back(17); 
+	indices.push_back(18);
+	indices.push_back(16); 
+	indices.push_back(18);
+	indices.push_back(19);
+	// Abajo
+	indices.push_back(20); 
+	indices.push_back(21);
+	indices.push_back(22);
+	indices.push_back(20); 
+	indices.push_back(22);
+	indices.push_back(23);
 
 
 
@@ -145,7 +169,7 @@ void GameLoop()
 	_camera.SetPosition(0.0f, 0.0f, 15.0f);
 
 	//_camera.MoveForward(0.0001f);
-	_transform.Rotate(0.1f, 0.1f, 0.1f, true);
+	_transform.Rotate(0.3f, 0.3f, 0.3f, true);
 
 	_shaderProgram.Activate();
 	_shaderProgram.SetUniformMatrix("mvpMatrix", _camera.GetViewProjection() * _transform.GetModelMatrix());

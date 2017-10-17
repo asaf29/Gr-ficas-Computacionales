@@ -77,9 +77,9 @@ void Mesh::SetIndices(std::vector<unsigned int> indices, GLenum usage)
 	if (_indicesBufferObject != 0)
 		glDeleteBuffers(1, &_indicesBufferObject);
 
-	glBindVertexArray(_vertexArrayObject);
+	glBindVertexArray(_vertexArrayObject); //activar manager
 
-	glGenBuffers(1, &_indicesBufferObject);
+	glGenBuffers(1, &_indicesBufferObject); //crea el buffer
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _indicesBufferObject);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * indices.size(), indices.data(), usage);
 

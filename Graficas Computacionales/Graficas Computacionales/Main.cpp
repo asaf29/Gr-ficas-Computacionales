@@ -17,6 +17,11 @@ Isaac Hinojosa Padilla A01375843
 Mesh _mesh;
 ShaderProgram _shaderProgram;
 Transform _transform;
+Transform _transform1;
+Transform _transform2;
+Transform _transform3;
+Transform _transform4;
+Transform _transform5;
 Camera _camera;
 
 void Initialize()
@@ -148,6 +153,23 @@ void Initialize()
 	indices.push_back(23);
 
 	****/
+	//triangulo piso
+	_transform1.Translate(0.0f, -5.0f, 0.0f, false);
+	_transform1.SetScale(20.0f, 0.0f, 20.0f);
+
+	//base torre
+	_transform2.Translate(17.0f, 0.0f, 17.0f, false);
+	_transform2.SetScale(1.0f, 1.0f, 1.0f);
+	
+	//tapa torre
+	_transform3.Translate(17.0f, 6.0f, 17.0f, false);
+
+	//CUBO R X
+	_transform4.Translate(0.0f, 0.0f, 30.0f, false);
+
+	//CUBO R Z
+	_transform5.Translate(-30.0f, 0.0f, 10.0f, false);
+	
 
 	_mesh.CreateMesh(24);
 	_mesh.SetIndices(indices, GL_STATIC_DRAW);
@@ -172,13 +194,41 @@ void GameLoop()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	_camera.SetPosition(0.0f, 0.0f, 15.0f);
+	_camera.Rotate(0.0f, 1.0f, 0.0f, false);
 
 	//_camera.MoveForward(0.0001f);
 	_transform.Rotate(0.3f, 0.3f, 0.3f, true);
 
-	_shaderProgram.Activate();
-	_shaderProgram.SetUniformMatrix("mvpMatrix", _camera.GetViewProjection() * _transform.GetModelMatrix());
+	_shaderProgram.Activate(); //mandar informacion, activar shader
+	_shaderProgram.SetUniformMatrix("mvpMatrix", _camera.GetViewProjection() * _transform.GetModelMatrix()); //getmodelmatrix, donde esta que escala tiene que rotacion tiene
+	_mesh.Draw(GL_TRIANGLES); //instruccion de dibujado, para hacer una nueva figura se debe usar otro draw
+
+	//Cuadrado piso
+	_shaderProgram.SetUniformMatrix("mvpMatrix", _camera.GetViewProjection() * _transform1.GetModelMatrix());
 	_mesh.Draw(GL_TRIANGLES);
+
+	//base torre
+	_shaderProgram.SetUniformMatrix("mvpMatrix", _camera.GetViewProjection() * _transform2.GetModelMatrix());
+	_mesh.Draw(GL_TRIANGLES);
+	_transform2.Rotate(0.0f, 1.0f, 0.0f, true);
+
+	//tapa torre
+	_shaderProgram.SetUniformMatrix("mvpMatrix", _camera.GetViewProjection() * _transform3.GetModelMatrix());
+	_mesh.Draw(GL_TRIANGLES);
+	_transform3.Rotate(0.0f, -1.0f, 0.0f, true);
+
+	//CUBO R x
+	_shaderProgram.SetUniformMatrix("mvpMatrix", _camera.GetViewProjection() * _transform4.GetModelMatrix());
+	_mesh.Draw(GL_TRIANGLES);
+	_transform4.Rotate(1.0f, 0.0f, 0.0f, true);
+
+	//CUBO R Z
+	_shaderProgram.SetUniformMatrix("mvpMatrix", _camera.GetViewProjection() * _transform5.GetModelMatrix());
+	_mesh.Draw(GL_TRIANGLES);
+	_transform5.Rotate(0.0f, 0.0f, 1.0f, true);
+
+
+
 	_shaderProgram.Deactivate();
 
 	// Cuando terminamos de renderear, cambiamos los buffers.

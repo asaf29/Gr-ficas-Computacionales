@@ -9,6 +9,7 @@ Mesh::Mesh()
 	_colorsVertexBufferObject = 0;
 	_indicesBufferObject = 0;
 	_indicesCount = 0;
+	_normalsBufferObject = 0;
 
 }
 
@@ -67,6 +68,20 @@ void Mesh::SetColorAttribute(std::vector<glm::vec4> colors, GLenum usage, GLuint
 		SetAttributeData(_colorsVertexBufferObject, sizeof(glm::vec4) * colors.size(), colors.data(), usage, locationIndex, 4);
 }
 
+void Mesh::SetNormalsAttribute(std::vector<glm::vec3> normals, GLenum usage, GLuint locationIndex)
+{
+	if (normals.size() > 0 && normals.size() == _vertexCount) {
+		SetAttributeData(_normalsBufferObject, sizeof(glm::vec3) * normals.size(), normals.data(), usage, locationIndex, 3);
+	}
+}
+
+void Mesh::SetTexCoordAttribute(std::vector<glm::vec2> texCoords, GLenum usage, GLuint locationIndex)
+{
+	if (texCoords.size() > 0 && texCoords.size() == _vertexCount) {
+		SetAttributeData(_texCoordsVertexBufferObject, sizeof(glm::vec2) * texCoords.size(), texCoords.data(), usage, locationIndex, 2);
+	}
+}
+
 void Mesh::SetIndices(std::vector<unsigned int> indices, GLenum usage)
 {
 	if (indices.size() <= 0)
@@ -104,4 +119,4 @@ void Mesh::SetAttributeData(GLuint& buffer, const GLsizeiptr size, const void* d
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 	glBindVertexArray(0);
-};
+}

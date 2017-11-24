@@ -2,6 +2,7 @@
 
 in vec3 InterpolatedColor; 
 
+
 out vec4 FragColor;
 
 void main()
